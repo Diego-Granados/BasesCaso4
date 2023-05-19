@@ -60,3 +60,10 @@ GO
 		usan el mismo saldo. Supongamos que el saldo es de 1500. Si el viaje de T1 cuesta 700 y el de T2 1000, entonces con base en el monto que leyeron, sí
 		pueden tener ese descuento. A la hora de actualizar el saldo, se terminaría realizando 1500 - 700 - 1000 = -200, por lo que el saldo quedaría negativo
 		y se crearía una inconsistencia. */
+
+EXEC sp_recompile O.name
+SELECT O.name, M.definition, O.type_desc, O.type 
+FROM sys.sql_modules M 
+INNER JOIN sys.objects O ON M.object_id=O.object_id 
+WHERE O.type IN ('P');
+GO
