@@ -4,8 +4,9 @@
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
 
-DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccion];
+DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionLU2];
 GO
+/*
 DROP TYPE IF EXISTS viajesTabla;
 GO
 
@@ -13,9 +14,10 @@ CREATE TYPE viajesTabla
 	AS TABLE
 		(viajeId INT);
 GO
+*/
 
 -- Este stored procedure recibe los viajes de recolección que se van a pagar en un table valued parameter.
-CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccion]
+CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccionLU2]
 	@viajes [dbo].[viajesTabla] READONLY
 AS 
 BEGIN
@@ -44,6 +46,17 @@ BEGIN
 	)
 
 	
+		/* La tabla de saldosDistribucion puede causar que haya un lost update y un dirty read. Puede ocurrir un lost update cuando se intenta 
+		registrar la factura de dos viajes diferentes, en diferentes transacciones, que van al mismo local. Puede ser que la T1 actualice 
+		el saldo de ese local con base en el descuento de ese viaje, y que T2 haga lo mismo con base en su viaje. Como el montoSaldo en T2 no se 
+		ha actualizado, el monto que quedó luego de T1 no va aparecer, entonces se pierde el update de T1. Por otro lado, es posible que también se
+		cree una inconsistencia en los datos e incluso el saldo dé negativo. En este stored procedure se lee el monto que se puede obtener del descuento antes,
+		en el SELECT de la línea 48. Esto puede causar que dos transacciones lean el mismo valor de saldo disponible en ese momento, por lo que cada una
+		va a sacar el descuento con base en ese monto. No obstante, cuando se actualice aquí, las dos transacciones van a restarle al saldo sus descuentos, 
+		y dependiendo de la cantidad del saldo, es posible que no alcance para los dos. Por ejemplo, T1 y T2 registran viajes para el local 1, por lo que
+		usan el mismo saldo. Supongamos que el saldo es de 1500. Si el viaje de T1 cuesta 700 y el de T2 1000, entonces con base en el monto que leyeron, sí
+		pueden tener ese descuento. A la hora de actualizar el saldo, se terminaría realizando 1500 - 700 - 1000 = -200, por lo que el saldo quedaría negativo
+		y se crearía una inconsistencia. */
 
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
 	(SELECT locales.productorId, ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion), camiones.recolectorId, (sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
@@ -92,7 +105,8 @@ BEGIN
 			ELSE NULL
 		END
 	END))
-	
+	SELECT * FROM saldosDistribucion;
+
 	SET @InicieTransaccion = 0
 	IF @@TRANCOUNT=0 BEGIN
 		SET @InicieTransaccion = 1
@@ -111,6 +125,8 @@ BEGIN
 		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
 		FROM #viajesSelect;
 		
+		SELECT * FROM saldosDistribucion;
+
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal, viajesRecoleccion.localId localId FROM #viajesSelect
 			INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = #viajesSelect.viaje
@@ -121,6 +137,7 @@ BEGIN
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
 
+		SELECT * FROM saldosDistribucion;
 
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)
