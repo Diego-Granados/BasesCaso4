@@ -24,9 +24,9 @@ INSERT INTO [dbo].[costosPasoRecoleccion] ([recPasoId], [costoRec], [recolectorI
 VALUES (1, 1000.5, 2, 250, 1100.5, 3, 4, 1, 1, GETDATE(), NULL, 'computer01', 'user01', 0x0);
 
 INSERT INTO [dbo].[desechosPorPaso] ([recPasoId],[maxEsperado],[recoger],[minEsperado],[costoTratoId],[desechoId],[enabled],[createdAt],[updatedAt],[computer],[username],[checksum])
-VALUES (1,35,1,20,54,2,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
+VALUES (1,35,1,20,1,2,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
 INSERT INTO [dbo].[desechosPorPaso] ([recPasoId],[maxEsperado],[recoger],[minEsperado],[costoTratoId],[desechoId],[enabled],[createdAt],[updatedAt],[computer],[username],[checksum])
-VALUES (1,40,1,20,54,1,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
+VALUES (1,40,1,20,1,1,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
 
 INSERT INTO [dbo].[desechosPlantasLogs] ([plantaId], [desechoId], [cantidad], [fecha], [viajeId], [costoTrato], [enabled], [costoTratoId], [createdAt], [computer], [username], [checksum])
 VALUES (1, 2, 30, '2023-05-04 10:00:00', 1, 50.00, 1, 1, '2023-05-04 10:00:00', 'PC123', 'JohnDoe', 0x12AB34CD5678EF90123456AB789CDEF012345678);
@@ -55,9 +55,9 @@ INSERT INTO [dbo].[costosPasoRecoleccion] ([recPasoId], [costoRec], [recolectorI
 VALUES (2, 1000.5, 2, 250, 1100.5, 7, 4, 1, 1, GETDATE(), NULL, 'computer01', 'user01', 0x0);
 
 INSERT INTO [dbo].[desechosPorPaso] ([recPasoId],[maxEsperado],[recoger],[minEsperado],[costoTratoId],[desechoId],[enabled],[createdAt],[updatedAt],[computer],[username],[checksum])
-VALUES (2,30,1,20,54,3,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
+VALUES (2,30,1,20,1,3,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
 INSERT INTO [dbo].[desechosPorPaso] ([recPasoId],[maxEsperado],[recoger],[minEsperado],[costoTratoId],[desechoId],[enabled],[createdAt],[updatedAt],[computer],[username],[checksum])
-VALUES (2,50,1,30,54,4,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
+VALUES (2,50,1,30,1,4,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
 
 INSERT INTO [dbo].[desechosPlantasLogs] ([plantaId], [desechoId], [cantidad], [fecha], [viajeId], [costoTrato], [enabled], [costoTratoId], [createdAt], [computer], [username], [checksum])
 VALUES (1, 3, 25.5, '2023-05-04 10:00:00', 2, 50.00, 1, 1, '2023-05-04 10:00:00', 'PC123', 'JohnDoe', 0x12AB34CD5678EF90123456AB789CDEF012345678);

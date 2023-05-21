@@ -4,9 +4,8 @@
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
 
-DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionUR2];
+DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccion];
 GO
-/*
 DROP TYPE IF EXISTS viajesTabla;
 GO
 
@@ -14,10 +13,9 @@ CREATE TYPE viajesTabla
 	AS TABLE
 		(viajeId INT);
 GO
-*/
 
 -- Este stored procedure recibe los viajes de recolección que se van a pagar en un table valued parameter.
-CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccionUR2]
+CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccion]
 	@viajes [dbo].[viajesTabla] READONLY
 AS 
 BEGIN
@@ -45,21 +43,15 @@ BEGIN
 		montoAPagar MONEY
 	)
 
-	-- T2: Empieza después de T1
-	-- se lee el valor de saldo 600 para el local 1. El costo de T2 es 1200, entonces agarra todo el saldo para usarlo
+	
+
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
-	(SELECT locales.productorId, 
-	((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion),
-	camiones.recolectorId, 
-	(sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,
-	sumasDesechosViajes.costosTratos / tCT.conversion, 
-	costosPasoRecoleccion.comisionEV / tCC.conversion,
-	viajesRecoleccion.viajeId, 
+	(SELECT locales.productorId, ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion), camiones.recolectorId, (sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
+	costosPasoRecoleccion.comisionEV / tCC.conversion, viajesRecoleccion.viajeId, 
 	(CASE 
 		WHEN ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion) > (saldosDistribucion.montoSaldo / vc.localesCount) / tcs.conversion THEN (saldosDistribucion.montoSaldo / vc.localesCount) / tCS.conversion
 		ELSE ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion)
-	END ),
-	((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion) - (CASE 
+	END ),((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion) - (CASE 
 		WHEN ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion) > (saldosDistribucion.montoSaldo / vc.localesCount) / tcs.conversion THEN (saldosDistribucion.montoSaldo / vc.localesCount) / tCS.conversion
 		ELSE ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion)
 	END )
@@ -99,11 +91,8 @@ BEGIN
 			WHEN (SELECT paisId FROM elementosPorRegion WHERE elementosPorRegion.regionId = costosPasoRecoleccion.areaEfectoId AND elementosPorRegion.paisId = estados.paisId) IS NOT NULL THEN costosPasoRecoleccion.areaEfectoId
 			ELSE NULL
 		END
-	END));
-
-	SELECT 'Primer read', saldoId, montoSaldo FROM saldosDistribucion;
-
-	-- T2 continúa la ejecución antes de T1
+	END))
+	
 	SET @InicieTransaccion = 0
 	IF @@TRANCOUNT=0 BEGIN
 		SET @InicieTransaccion = 1
@@ -122,8 +111,6 @@ BEGIN
 		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
 		FROM #viajesSelect;
 		
-		SELECT 'Segundo read', saldoId, montoSaldo FROM saldosDistribucion;
-
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal, viajesRecoleccion.localId localId FROM #viajesSelect
 			INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = #viajesSelect.viaje
@@ -133,9 +120,7 @@ BEGIN
 		UPDATE saldosDistribucion
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
-		-- T2 vuelve a leer el montoSaldo y a ese valor le resta el descuento que calculó al inicio.
-		-- Escribe el resultado. El saldo queda en 0.
-		SELECT 'Tercer read', saldoId, montoSaldo FROM saldosDistribucion;
+
 
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)
@@ -149,7 +134,7 @@ VALUES (1, '2023-04-25 12:00:00', 'PC01', 'JohnDoe', 0x0123456789ABCDEF012345678
 		INNER JOIN @viajes v ON v.viajeId = itemsRecoleccion.viajeId
 		
 		
-		IF @InicieTransaccion=1 BEGIN -- T2 termina su ejecución, continúa T1
+		IF @InicieTransaccion=1 BEGIN
 			COMMIT
 		END
 	END TRY

@@ -9,12 +9,13 @@ DECLARE @viajes AS viajesTabla;
 INSERT INTO @viajes VALUES (3), (4);
 
 EXEC SP_registrarFacturaRecoleccionUR2 @viajes;
+Go
 
 select * from facturas;
 select * from itemsFactura;
 select * from itemsRecoleccion;
 select * from saldosDistribucion;
-select * from viajesRecoleccion
+select * from viajesRecoleccion;
 
 /*
 select * from desechosPlantasLogs

@@ -40,9 +40,10 @@ BEGIN
 		montoRecoleccion MONEY, 
 		montoTratamiento MONEY, 
 		comision MONEY, 
-		viaje INT, 
-		descuento MONEY, 
-		montoAPagar MONEY
+		viaje INT,
+		localId INT,
+		localesCount SMALLINT, 
+		conversion MONEY
 	)
 
 	
@@ -58,16 +59,28 @@ BEGIN
 		pueden tener ese descuento. A la hora de actualizar el saldo, se terminaría realizando 1500 - 700 - 1000 = -200, por lo que el saldo quedaría negativo
 		y se crearía una inconsistencia. */
 
-	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
-	(SELECT locales.productorId, ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion), camiones.recolectorId, (sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
-	costosPasoRecoleccion.comisionEV / tCC.conversion, viajesRecoleccion.viajeId, 
-	(CASE 
-		WHEN ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion) > (saldosDistribucion.montoSaldo / vc.localesCount) / tcs.conversion THEN (saldosDistribucion.montoSaldo / vc.localesCount) / tCS.conversion
-		ELSE ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion)
-	END ),((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion) - (CASE 
-		WHEN ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion) > (saldosDistribucion.montoSaldo / vc.localesCount) / tcs.conversion THEN (saldosDistribucion.montoSaldo / vc.localesCount) / tCS.conversion
-		ELSE ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion)
-	END )
+
+	/*
+		Puede ocurrir el problema del Unrepeatable Read en la tabla de saldosDistribucion. Al hacer el procesamiento grueso de la transacción antes del begin transaction,
+		acortamos el tiempo y el procesamiento dentro de la transacción. Sin embargo, el cálculo del descuento por el saldo se hace con base en el monto que 
+		haya en el momento donde se hace todo el procesamiento. Si dos transacciones realizan este procesamiento al mismo tiempo, o una inmediatamente después de la otra, 
+		van a leer el mismo saldo disponible para ambas. Si este es el caso, cada una puede pensar que puede usar la totalidad del saldo para pagar su recolección.
+		Luego al momento de actualizar el saldo, se resta el monto que leen dos veces, por lo que queda una cantidad negativa en el saldo.
+		Esto es el problema del unrepeatable read porque la segunda transacción primero lee el valor original, pero cuando hace el update, lee el valor actual del saldo,
+		el cual es diferente al valor original que leyó al inicio.
+	*/
+
+	-- T1: empieza primero
+	-- se lee el valor de saldo 600. El costo de T1 es 725. Puede gastar todo el saldo, entonces lo agarra todo
+	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
+	(SELECT locales.productorId,
+	((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion),
+	camiones.recolectorId,
+	(sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
+	costosPasoRecoleccion.comisionEV / tCC.conversion, viajesRecoleccion.viajeId,
+	vc.localId,
+	vc.localesCount,
+	tCS.conversion
 	FROM @viajes v
 	INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = v.viajeId   
 	INNER JOIN (SELECT localId, COUNT(localId) localesCount FROM @viajes vs INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = vs.viajeId GROUP BY localId) vc ON viajesRecoleccion.localId = vc.localId
@@ -106,9 +119,11 @@ BEGIN
 		END
 	END))
 
-	SELECT * FROM saldosDistribucion;
-	waitfor delay '00:00:10'
+	SELECT 'Primer read', saldoId, montoSaldo FROM saldosDistribucion;
+	waitfor delay '00:00:15'
+	-- Por razones del planificador, la transacción T1 espera a que T2 termine
 
+	--T2 termina y T1 empieza su transacción.
 	SET @InicieTransaccion = 0
 	IF @@TRANCOUNT=0 BEGIN
 		SET @InicieTransaccion = 1
@@ -120,26 +135,33 @@ BEGIN
 		SET @CustomError = 2001
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
-		END 
+		END;
 		
+		WITH descuentos(viajeId, descuento) AS (
+			SELECT #viajesSelect.viaje, (CASE 
+				WHEN ((#viajesSelect.total > (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion) THEN (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion
+				ELSE (#viajesSelect.total)
+			END ) FROM #viajesSelect INNER JOIN saldosDistribucion ON #viajesSelect.localId = saldosDistribucion.localId
+		)
 		INSERT INTO [dbo].[itemsRecoleccion] ([productorId], [montoTotal], [recolectorId], [montoRec], [montoTrato], 
 		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])
-		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
-		FROM #viajesSelect;
+		SELECT productor, total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, total - descuento, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
+		FROM #viajesSelect INNER JOIN descuentos ON #viajesSelect.viaje = descuentos.viajeId;
 		
-		SELECT * FROM saldosDistribucion;
+		SELECT 'Segundo read', saldoId, montoSaldo FROM saldosDistribucion;
 
 		WITH sumSaldo (descuentoTotal, localId) AS (
-			SELECT SUM(#viajesSelect.descuento) descuentoTotal, viajesRecoleccion.localId localId FROM #viajesSelect
-			INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = #viajesSelect.viaje
-			INNER JOIN saldosDistribucion ON saldosDistribucion.localId = viajesRecoleccion.localId
-			GROUP BY viajesRecoleccion.localId
+			SELECT SUM(itemsRecoleccion.descuentoSaldo) descuentoTotal, #viajesSelect.localId localId FROM #viajesSelect
+			INNER JOIN itemsRecoleccion ON itemsRecoleccion.viajeId = #viajesSelect.viaje
+			GROUP BY #viajesSelect.localId
 		)
 		UPDATE saldosDistribucion
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
-
-		SELECT * FROM saldosDistribucion;
+		-- T1 vuelve a leer montoSaldo, pero esta vez montoSaldo está en 0 porque ya se había gastado todo
+		-- Aquí ocurre el unrepeatable read problem. Se lee montoSaldo dos veces y se obtienen resultados distintos.
+		-- Resta el valor inicial que leyó al inicio y escribe el resultado. El montoSaldo queda en -600
+		SELECT 'Tercer read', saldoId, montoSaldo FROM saldosDistribucion;
 
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)
@@ -152,7 +174,7 @@ VALUES (1, '2023-04-25 12:00:00', 'PC01', 'JohnDoe', 0x0123456789ABCDEF012345678
 		FROM itemsRecoleccion
 		INNER JOIN @viajes v ON v.viajeId = itemsRecoleccion.viajeId
 		
-		
+		-- T1 termina su ejecución
 		IF @InicieTransaccion=1 BEGIN
 			COMMIT
 		END

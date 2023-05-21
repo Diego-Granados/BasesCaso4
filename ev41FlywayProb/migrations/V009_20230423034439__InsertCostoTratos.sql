@@ -4,6 +4,35 @@
 -- Descripcion: En este script se insertan los costos por trato
 -----------------------------------------------------------
 
+INSERT INTO [dbo].[costosTratamiento]
+           ([precioKg]
+           ,[areaEfectoId]
+           ,[objectTypeId]
+           ,[fechaInicio]
+           ,[fechaFin]
+           ,[monedaId]
+           ,[productorId]
+           ,[tratoId]
+           ,[enabled]
+           ,[createdAt]
+           ,[computer]
+           ,[username]
+           ,[checksum])
+     VALUES
+           (10
+           ,1
+           ,5
+           ,DATEADD(minute, FLOOR(1 + RAND()*518400), '2022-01-01 00:00:00')
+           ,DATEADD(minute, FLOOR(1 + RAND()*518400), '2022-01-01 00:00:00')
+           ,1
+           ,1
+           ,1
+           ,1
+           ,GETDATE()
+           ,'computer1'
+           ,'user1'
+           ,1234)
+
 CREATE TABLE #objectTypeQuantities (
 	objectTypeId TINYINT IDENTITY(1,1) NOT NULL,
 	cantidad INT NULL

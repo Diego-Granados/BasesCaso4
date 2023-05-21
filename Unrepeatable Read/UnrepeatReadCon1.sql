@@ -15,4 +15,6 @@ select * from facturas;
 select * from itemsFactura;
 select * from itemsRecoleccion;
 select * from saldosDistribucion;
-select * from viajesRecoleccion
+select * from viajesRecoleccion;
+
+

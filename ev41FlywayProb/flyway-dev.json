@@ -1,7 +1,7 @@
 {
   "version": "2.0",
-  "name": "ev41Flyway",
-  "id": "7ac00dee-c80a-4902-b42c-d4bffe072fda",
+  "name": "ev41FlywayProb",
+  "id": "1f232b3f-a2d5-4368-b03d-78b7c3f71fd9",
   "databaseType": "SqlServer",
   "development": {
     "scriptsFolder": "./schema-model"
@@ -14,9 +14,9 @@
       {
         "connectionProvider": {
           "type": "UsernamePassword",
-          "url": "jdbc:sqlserver://localhost:1433;databaseName=ev41;encrypt=false;integratedSecurity=true;trustServerCertificate=true"
+          "url": "jdbc:sqlserver://localhost:1433;databaseName=ev34;encrypt=false;integratedSecurity=true;trustServerCertificate=true"
         },
-        "displayName": "ev41"
+        "displayName": "ev34"
       }
     ]
   }
