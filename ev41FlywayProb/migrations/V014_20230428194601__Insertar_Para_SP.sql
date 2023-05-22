@@ -95,7 +95,7 @@ VALUES
 (2, 10000.0000, 1, 1, '2023-04-24 12:00:00', 'my_computer', 'my_username', 0x0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF);
 
 
---Viaje 3
+-- viaje 3
 INSERT INTO [dbo].[viajesRecoleccion] ([recPasoId], [localId], [camionId], [plantaOrigenId], [plantaDestinoId], [fechaInicio], [choferId], [enabled], [createdAt], [updatedAt], [computer], [username], [checksum])
 VALUES (1, 1, 1, 1, 2, '2023-05-11 09:00:00', NULL, 1, '2023-05-11 09:00:00', NULL, 'ComputerName', 'Username', 0x0123456789ABCDEF);
 
@@ -114,4 +114,3 @@ VALUES (1, 2, 25, '2023-05-19 10:00:00', 4, 50.00, 1, 1, '2023-05-19 10:00:00', 
 
 INSERT INTO [dbo].[desechosPlantasLogs] ([plantaId], [desechoId], [cantidad], [fecha], [viajeId], [costoTrato], [enabled], [costoTratoId], [createdAt], [computer], [username], [checksum])
 VALUES (1, 1, 20, '2023-05-19 10:00:00', 4, 100.00, 1, 1, '2023-05-19 10:00:00', 'PC123', 'JohnDoe', 0x12AB34CD5678EF90123456AB789CDEF012345678);
-

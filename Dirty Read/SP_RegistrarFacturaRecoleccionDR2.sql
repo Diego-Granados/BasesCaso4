@@ -4,8 +4,9 @@
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
 
-DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccion];
+DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionDR2];
 GO
+/*
 DROP TYPE IF EXISTS viajesTabla;
 GO
 
@@ -13,9 +14,10 @@ CREATE TYPE viajesTabla
 	AS TABLE
 		(viajeId INT);
 GO
+*/
 
 -- Este stored procedure recibe los viajes de recolección que se van a pagar en un table valued parameter.
-CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccion]
+CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccionDR2]
 	@viajes [dbo].[viajesTabla] READONLY
 AS 
 BEGIN
@@ -96,25 +98,17 @@ BEGIN
 	SET @InicieTransaccion = 0
 	IF @@TRANCOUNT=0 BEGIN
 		SET @InicieTransaccion = 1
-		SET TRANSACTION ISOLATION LEVEL READ COMMITTED
+		SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
 		BEGIN TRANSACTION		
 	END
 	
 	BEGIN TRY
 		SET @CustomError = 2001
-		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
-			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
-		END 
 		
-		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
-			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
-		END;
+				SELECT @@SPID AS SecondTransactionProcessID
+		EXEC sp_lock
+		SELECT saldoId, montoSaldo FROM saldosDistribucion;
 
-		INSERT INTO [dbo].[itemsRecoleccion] ([productorId], [montoTotal], [recolectorId], [montoRec], [montoTrato], 
-		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])
-		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
-		FROM #viajesSelect;
-		
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal, viajesRecoleccion.localId localId FROM #viajesSelect
 			INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = #viajesSelect.viaje
@@ -125,7 +119,21 @@ BEGIN
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
 
+		SELECT saldoId, montoSaldo FROM saldosDistribucion;
 
+
+		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
+			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
+		END
+
+		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
+			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
+		END;
+
+		INSERT INTO [dbo].[itemsRecoleccion] ([productorId], [montoTotal], [recolectorId], [montoRec], [montoTrato], 
+		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])
+		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
+		FROM #viajesSelect;
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)
 VALUES (1, '2023-04-25 12:00:00', 'PC01', 'JohnDoe', 0x0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF, 1, 'Factura de recoleccion ', '2023-04-25 12:00:00', NULL);
