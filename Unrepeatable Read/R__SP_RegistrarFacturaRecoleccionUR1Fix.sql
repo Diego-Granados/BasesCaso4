@@ -120,14 +120,24 @@ BEGIN
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
-		
-		SELECT 'Primer read', saldoId, montoSaldo FROM saldosDistribucion WITH (UPDLOCK);
 
-		-- El descuento se calcula en el momento de la inserción a los ítemes. Aquí se lee el saldo.
-		-- Como el nivel de isolación es Read committed, solo lee el saldo actual, el que ha sido committed.
+		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
+			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
+		END;
+		
+		SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
+
+		/*
+		-- El descuento se calcula en el momento de la inserción a los ítemes.
+		Aquí se lee el saldo.
+		-- Como el nivel de isolación es repeatable read, solo lee el saldo actual,
+		el que ha sido committed.
 		-- Lee el saldo una primera vez. Lee un 0.
+		*/
+		-- calcula si extrae todo el monto del saldo o solo una parte comparando
+		-- el costo del viaje con lo que hay disponible
 		WITH descuentos(viajeId, descuento) AS (
-			SELECT #viajesSelect.viaje, (CASE  -- calcula si extrae todo el monto del saldo o solo una parte comparando el costo del viaje con lo que hay disponible
+			SELECT #viajesSelect.viaje, (CASE  
 				WHEN (#viajesSelect.total > (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion)
 				THEN (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion
 				ELSE (#viajesSelect.total)
@@ -139,13 +149,14 @@ BEGIN
 		FROM #viajesSelect INNER JOIN descuentos ON #viajesSelect.viaje = descuentos.viajeId;
 		
 		waitfor delay '00:00:10';
-
 		-- Por razones del planificador, la transacción T1 espera y T2 se ejecuta.
-		-- Sin embargo, T2 necesita modificar saldosDistribucion, el cual tiene un lock, por lo que T2 espera.
+		-- Sin embargo, T2 necesita modificar saldosDistribucion, el cual tiene un lock,
+		-- por lo que T2 espera.
 
-		SELECT 'Segundo read', saldoId, montoSaldo FROM saldosDistribucion WITH (UPDLOCK);
+		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
 
-		-- Calcula el descuento total usado en los ítemes, porque este se había dividio en cada viaje para el local.
+		-- Calcula el descuento total usado en los ítemes, porque este se había dividido
+		-- en cada viaje para el local.
 		-- Actualiza el saldo utilizado
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(itemsRecoleccion.descuentoSaldo) descuentoTotal, #viajesSelect.localId localId FROM #viajesSelect
@@ -155,11 +166,15 @@ BEGIN
 		UPDATE saldosDistribucion
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
-		-- T1 vuelve a leer montoSaldo, pero esta vez montoSaldo no pudo haber sido modificado desde el primer read
-		-- gracias al nivel de isolación de repeatable read, el cual adquiere locks de lectura en los objetos que va a leer o escribir,
-		-- como saldosDistribución
-		-- Resta el valor inicial que leyó al inicio y escribe el resultado. El montoSaldo queda en -600
-		SELECT 'Tercer read', saldoId, montoSaldo FROM saldosDistribucion WITH (UPDLOCK);
+		/*
+		-- T1 vuelve a leer montoSaldo, pero esta vez montoSaldo no pudo haber sido
+		modificado desde el primer read gracias al nivel de isolación de repeatable
+		read, el cual adquiere locks de lectura en los objetos que va a leer o
+		escribir, como saldosDistribución. Resta el valor inicial que leyó al inicio
+		y escribe el resultado. El montoSaldo queda en -600.
+		*/
+
+		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
 
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)

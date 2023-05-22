@@ -70,7 +70,7 @@ BEGIN
 	*/
 
 	-- T1: empieza primero
-	-- se lee el valor de saldo 600. El costo de T1 es 725. Puede gastar todo el saldo, entonces lo agarra todo
+	-- se lee el valor de saldo 600. El costo de T1 es 712. Puede gastar todo el saldo, entonces lo agarra todo, 600
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
 	(SELECT locales.productorId, ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion), camiones.recolectorId, (sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
 	costosPasoRecoleccion.comisionEV / tCC.conversion, viajesRecoleccion.viajeId, 
@@ -119,7 +119,7 @@ BEGIN
 		END
 	END))
 
-	SELECT 'Primer read', saldoId, montoSaldo FROM saldosDistribucion;
+	SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 	waitfor delay '00:00:15'
 	-- Por razones del planificador, la transacción T1 espera a que T2 termine
 
@@ -142,7 +142,7 @@ BEGIN
 		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
 		FROM #viajesSelect;
 		
-		SELECT 'Segundo read', saldoId, montoSaldo FROM saldosDistribucion;
+		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal, viajesRecoleccion.localId localId FROM #viajesSelect
@@ -156,8 +156,7 @@ BEGIN
 		-- T1 vuelve a leer montoSaldo, pero esta vez montoSaldo está en 0 porque ya se había gastado todo
 		-- Aquí ocurre el unrepeatable read problem. Se lee montoSaldo dos veces y se obtienen resultados distintos.
 		-- Resta el valor inicial que leyó al inicio y escribe el resultado. El montoSaldo queda en -600
-		SELECT 'Tercer read', saldoId, montoSaldo FROM saldosDistribucion;
-
+		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)
 VALUES (1, '2023-04-25 12:00:00', 'PC01', 'JohnDoe', 0x0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF, 1, 'Factura de recoleccion ', '2023-04-25 12:00:00', NULL);

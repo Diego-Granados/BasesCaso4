@@ -101,7 +101,7 @@ BEGIN
 		END
 	END));
 
-	SELECT 'Primer read', saldoId, montoSaldo FROM saldosDistribucion;
+	SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 	-- T2 continúa la ejecución antes de T1
 	SET @InicieTransaccion = 0
@@ -122,7 +122,7 @@ BEGIN
 		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
 		FROM #viajesSelect;
 		
-		SELECT 'Segundo read', saldoId, montoSaldo FROM saldosDistribucion;
+		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal, viajesRecoleccion.localId localId FROM #viajesSelect
@@ -135,7 +135,7 @@ BEGIN
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
 		-- T2 vuelve a leer el montoSaldo y a ese valor le resta el descuento que calculó al inicio.
 		-- Escribe el resultado. El saldo queda en 0.
-		SELECT 'Tercer read', saldoId, montoSaldo FROM saldosDistribucion;
+		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)

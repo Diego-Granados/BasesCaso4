@@ -70,6 +70,7 @@ INSERT INTO #objectTypeQuantities (cantidad) VALUES
 ((SELECT COUNT(itemContId) FROM itemsContaminantes)),
 ((SELECT COUNT(viajeId) FROM viajesRecoleccion))
 
+-- select * from objectTypes;
 DECLARE @contador INT;
 SET @contador = 1
 WHILE @contador <= 1000
@@ -85,3 +86,5 @@ VALUES
 SET @contador = @contador + 1
 
 END
+
+-- select * from eventLogs ORDER BY posttime
