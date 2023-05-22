@@ -21,9 +21,9 @@ select * from viajesRecoleccion;
 -- Prueba con stored procedure arreglado
 DECLARE @viajes AS viajesTabla;
 
-INSERT INTO @viajes VALUES (1), (2);
+INSERT INTO @viajes VALUES (100), (5);
 
-EXEC SP_registrarFacturaRecoleccionURFix1 @viajes;
+EXEC SP_registrarFacturaRecoleccionDR1Fix @viajes;
 GO
 
 select * from facturas;
