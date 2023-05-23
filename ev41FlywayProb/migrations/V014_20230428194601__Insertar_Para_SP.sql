@@ -29,7 +29,7 @@ INSERT INTO [dbo].[desechosPorPaso] ([recPasoId],[maxEsperado],[recoger],[minEsp
 VALUES (1,40,1,20,1,1,1,GETDATE(),NULL,'ExampleComputer','ExampleUser',0x0000000000000000000000000000000000000000000000000000000000000000)
 
 INSERT INTO [dbo].[desechosPlantasLogs] ([plantaId], [desechoId], [cantidad], [fecha], [viajeId], [costoTrato], [enabled], [costoTratoId], [createdAt], [computer], [username], [checksum])
-VALUES (1, 2, 30, '2023-05-04 10:00:00', 1, 50.00, 1, 1, '2023-05-04 10:00:00', 'PC123', 'JohnDoe', 0x12AB34CD5678EF90123456AB789CDEF012345678);
+VALUES (1, 2, 30, '2023-05-04 10:00:00', 1, 120.00, 1, 1, '2023-05-04 10:00:00', 'PC123', 'JohnDoe', 0x12AB34CD5678EF90123456AB789CDEF012345678);
 
 INSERT INTO [dbo].[desechosPlantasLogs] ([plantaId], [desechoId], [cantidad], [fecha], [viajeId], [costoTrato], [enabled], [costoTratoId], [createdAt], [computer], [username], [checksum])
 VALUES (1, 1, 40, '2023-05-04 10:00:00', 1, 100.00, 1, 1, '2023-05-04 10:00:00', 'PC123', 'JohnDoe', 0x12AB34CD5678EF90123456AB789CDEF012345678);
