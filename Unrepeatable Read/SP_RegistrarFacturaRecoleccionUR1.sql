@@ -70,7 +70,7 @@ BEGIN
 	*/
 
 	-- T1: empieza primero
-	-- se lee el valor de saldo 600. El costo de T1 es 712. Puede gastar todo el saldo, entonces lo agarra todo, 600
+	-- se lee el valor de saldo 600. El costo de T1 es 625. Puede gastar todo el saldo, entonces lo agarra todo, 600
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
 	(SELECT locales.productorId, ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion), camiones.recolectorId, (sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
 	costosPasoRecoleccion.comisionEV / tCC.conversion, viajesRecoleccion.viajeId, 
