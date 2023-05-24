@@ -4,7 +4,7 @@
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
 
-DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionURFix1];
+DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionD1];
 GO
 /*
 DROP TYPE IF EXISTS viajesTabla;
@@ -17,7 +17,7 @@ GO
 */
 
 -- Este stored procedure recibe los viajes de recolección que se van a pagar en un table valued parameter.
-CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccionURFix1]
+CREATE PROCEDURE [dbo].[SP_registrarFacturaRecoleccionD1]
 	@viajes [dbo].[viajesTabla] READONLY
 AS 
 BEGIN
@@ -56,25 +56,15 @@ BEGIN
 		el cual es diferente al valor original que leyó al inicio.
 	*/
 
-	--T1 empieza su transacción primero.
-	SET @InicieTransaccion = 0
-	IF @@TRANCOUNT=0 BEGIN
-		SET @InicieTransaccion = 1
-		SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- El isolation level se pone en Repeatable read, el cual previene el problema del unrepeatable read.
-		BEGIN TRANSACTION		
-	END
-	
-	BEGIN TRY
-		SET @CustomError = 2001
-
-			-- T1: empieza primero
+	-- T1: empieza primero
 	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 712 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
 	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect	
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
 	(SELECT locales.productorId,
 	((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion),
 	camiones.recolectorId,
-	(sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
+	(sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,
+	sumasDesechosViajes.costosTratos / tCT.conversion, 
 	costosPasoRecoleccion.comisionEV / tCC.conversion, viajesRecoleccion.viajeId,
 	vc.localId,
 	vc.localesCount,
@@ -94,13 +84,13 @@ BEGIN
 	INNER JOIN paises ON estados.paisId = paises.paisId
 	INNER JOIN 
 	(SELECT SUM(desechosPlantasLogs.cantidad) AS cantidadDesechoRecogido, SUM(desechosPlantasLogs.costoTrato) AS costosTratos, costosTratamiento.monedaId AS monedaCosto, 
-	viajesRecoleccion.viajeId as sumaViajeId FROM desechosPlantasLogs 
-	INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = desechosPlantasLogs.viajeId INNER JOIN costosTratamiento ON 
-	desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId,  viajesRecoleccion.viajeId) AS sumasDesechosViajes 
+	v.viajeId as sumaViajeId FROM desechosPlantasLogs 
+	INNER JOIN @viajes v ON v.viajeId = desechosPlantasLogs.viajeId INNER JOIN costosTratamiento ON 
+	desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId,  v.viajeId) AS sumasDesechosViajes 
 	ON sumasDesechosViajes.sumaViajeId = viajesRecoleccion.viajeId
 	INNER JOIN 
 	(SELECT SUM(desechosPorPaso.maxEsperado) AS cantidadEsperada, desechosPorPaso.recPasoId as sumaPasoId FROM desechosPorPaso 
-	GROUP BY desechosPorPaso.recPasoId) AS sumasDesechosPasos ON viajesRecoleccion.recPasoId = sumasDesechosPasos.sumaPasoId
+	INNER JOIN viajesRecoleccion ON viajesRecoleccion.recPasoId = desechosPorPaso.recPasoId GROUP BY desechosPorPaso.recPasoId) AS sumasDesechosPasos ON viajesRecoleccion.recPasoId = sumasDesechosPasos.sumaPasoId
 	INNER JOIN tiposDeCambio tCT ON sumasDesechosViajes.monedaCosto = tCT.monedaCambioId
 	WHERE costosPasoRecoleccion.areaEfectoId = (CASE 
 		WHEN costosPasoRecoleccion.objectTypeId = 1 THEN locales.direccionId
@@ -117,6 +107,16 @@ BEGIN
 		END
 	END))
 
+	--T1 empieza su transacción primero.
+	SET @InicieTransaccion = 0
+	IF @@TRANCOUNT=0 BEGIN
+		SET @InicieTransaccion = 1
+		SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- El isolation level se pone en Repeatable read, el cual previene el problema del unrepeatable read.
+		BEGIN TRANSACTION		
+	END
+	
+	BEGIN TRY
+		SET @CustomError = 2001
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
@@ -125,7 +125,8 @@ BEGIN
 			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
 		END;
 		
-		SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
+
+		SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 		/*
 		-- El descuento se calcula en el momento de la inserción a los ítemes.
@@ -141,14 +142,14 @@ BEGIN
 				WHEN (#viajesSelect.total > (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion)
 				THEN (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion
 				ELSE (#viajesSelect.total)
-			END ) FROM #viajesSelect INNER JOIN saldosDistribucion WITH (UPDLOCK) ON #viajesSelect.localId = saldosDistribucion.localId
+			END ) FROM #viajesSelect INNER JOIN saldosDistribucion ON #viajesSelect.localId = saldosDistribucion.localId
 		)
 		INSERT INTO [dbo].[itemsRecoleccion] ([productorId], [montoTotal], [recolectorId], [montoRec], [montoTrato], 
 		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])
 		SELECT productor, total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, total - descuento, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
 		FROM #viajesSelect INNER JOIN descuentos ON #viajesSelect.viaje = descuentos.viajeId;
 		
-		waitfor delay '00:00:10';
+		waitfor delay '00:00:15';
 		-- Por razones del planificador, la transacción T1 espera y T2 se ejecuta.
 		-- Sin embargo, T2 necesita modificar saldosDistribucion, el cual tiene un lock,
 		-- por lo que T2 espera.
