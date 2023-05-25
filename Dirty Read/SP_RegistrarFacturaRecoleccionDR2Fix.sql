@@ -3,6 +3,10 @@
 -- Fecha: 4/23/2023
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
+-- Autor: Daniel Granados
+-- Fecha: 5/23/2023
+-- Descripción: Este Stored Procedure se adaptó para mostrar el problema del dirty read arreglado.
+-----------------------------------------------------------
 
 DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionDR2Fix];
 GO
@@ -91,13 +95,13 @@ BEGIN
 		INNER JOIN paises ON estados.paisId = paises.paisId
 		INNER JOIN 
 		(SELECT SUM(desechosPlantasLogs.cantidad) AS cantidadDesechoRecogido, SUM(desechosPlantasLogs.costoTrato) AS costosTratos, costosTratamiento.monedaId AS monedaCosto, 
-		viajesRecoleccion.viajeId as sumaViajeId FROM desechosPlantasLogs 
-		INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = desechosPlantasLogs.viajeId INNER JOIN costosTratamiento ON 
-		desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId,  viajesRecoleccion.viajeId) AS sumasDesechosViajes 
+		v.viajeId as sumaViajeId FROM desechosPlantasLogs 
+		INNER JOIN @viajes v ON v.viajeId = desechosPlantasLogs.viajeId INNER JOIN costosTratamiento ON 
+		desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId,  v.viajeId) AS sumasDesechosViajes 
 		ON sumasDesechosViajes.sumaViajeId = viajesRecoleccion.viajeId
 		INNER JOIN 
 		(SELECT SUM(desechosPorPaso.maxEsperado) AS cantidadEsperada, desechosPorPaso.recPasoId as sumaPasoId FROM desechosPorPaso 
-		INNER JOIN viajesRecoleccion ON viajesRecoleccion.recPasoId = desechosPorPaso.recPasoId GROUP BY desechosPorPaso.recPasoId) AS sumasDesechosPasos ON viajesRecoleccion.recPasoId = sumasDesechosPasos.sumaPasoId
+		GROUP BY desechosPorPaso.recPasoId) AS sumasDesechosPasos ON viajesRecoleccion.recPasoId = sumasDesechosPasos.sumaPasoId
 		INNER JOIN tiposDeCambio tCT ON sumasDesechosViajes.monedaCosto = tCT.monedaCambioId
 		WHERE costosPasoRecoleccion.areaEfectoId = (CASE 
 			WHEN costosPasoRecoleccion.objectTypeId = 1 THEN locales.direccionId

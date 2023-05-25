@@ -1,6 +1,6 @@
 -----------------------------------------------------------
 -- Autor: Daniel Granados
--- Fecha: 21/04/2023
+-- Fecha: 21/05/2023
 -- Descripcion: En este script se realizan pruebas del problema Dirty Read
 -----------------------------------------------------------
 

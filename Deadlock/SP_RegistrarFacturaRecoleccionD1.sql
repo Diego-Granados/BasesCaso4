@@ -3,6 +3,10 @@
 -- Fecha: 4/23/2023
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
+-- Autor: Daniel Granados
+-- Fecha: 5/23/2023
+-- Descripción: Este Stored Procedure se adaptó para mostrar el problema del deadlock.
+-----------------------------------------------------------
 
 DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionD1];
 GO
@@ -90,7 +94,7 @@ BEGIN
 	ON sumasDesechosViajes.sumaViajeId = viajesRecoleccion.viajeId
 	INNER JOIN 
 	(SELECT SUM(desechosPorPaso.maxEsperado) AS cantidadEsperada, desechosPorPaso.recPasoId as sumaPasoId FROM desechosPorPaso 
-	INNER JOIN viajesRecoleccion ON viajesRecoleccion.recPasoId = desechosPorPaso.recPasoId GROUP BY desechosPorPaso.recPasoId) AS sumasDesechosPasos ON viajesRecoleccion.recPasoId = sumasDesechosPasos.sumaPasoId
+	GROUP BY desechosPorPaso.recPasoId) AS sumasDesechosPasos ON viajesRecoleccion.recPasoId = sumasDesechosPasos.sumaPasoId
 	INNER JOIN tiposDeCambio tCT ON sumasDesechosViajes.monedaCosto = tCT.monedaCambioId
 	WHERE costosPasoRecoleccion.areaEfectoId = (CASE 
 		WHEN costosPasoRecoleccion.objectTypeId = 1 THEN locales.direccionId

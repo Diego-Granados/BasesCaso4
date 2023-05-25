@@ -1,7 +1,7 @@
 -----------------------------------------------------------
--- Autor: Diego Granados
--- Fecha: 05/04/2023
--- Descripcion: En este script se ejecuta el stored procedure SP_registrarFacturaRecoleccion
+-- Autor: Daniel Granados
+-- Fecha: 21/05/2023
+-- Descripcion: En este script se realizan pruebas del problema deadlock
 -----------------------------------------------------------
 
 -- Prueba de error de unrepeatable read
