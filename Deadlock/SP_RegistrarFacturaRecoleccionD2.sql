@@ -56,23 +56,9 @@ BEGIN
 		el cual es diferente al valor original que leyó al inicio.
 	*/
 
-
-
-
-	--T2 empieza después de T1.
-	SET @InicieTransaccion = 0
-	IF @@TRANCOUNT=0 BEGIN
-		SET @InicieTransaccion = 1
-		SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- El isolation level se pone en Repeatable read, el cual previene el problema del unrepeatable read.
-		BEGIN TRANSACTION		
-	END
-	
-	BEGIN TRY
-		SET @CustomError = 2001
-
-					SELECT * FROM sys.dm_tran_locks
-  WHERE resource_database_id = DB_ID()
-  AND resource_associated_entity_id = OBJECT_ID(N'dbo.saldosDistribucion');
+SELECT locks.resource_type, locks.resource_subtype, locks.request_mode, locks.request_status, locks.request_request_id, sys.objects.name FROM sys.dm_tran_locks AS locks
+LEFT JOIN sys.objects ON locks.resource_associated_entity_id = sys.objects.object_id
+WHERE locks.resource_database_id = DB_ID();
 
 	SELECT GETDATE();
 	-- T1: empieza primero
@@ -124,13 +110,29 @@ BEGIN
 			ELSE NULL
 		END
 	END))
+
+
+	--T2 empieza después de T1.
+	SET @InicieTransaccion = 0
+	IF @@TRANCOUNT=0 BEGIN
+		SET @InicieTransaccion = 1
+		SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- El isolation level se pone en Repeatable read, el cual previene el problema del unrepeatable read.
+		BEGIN TRANSACTION		
+	END
+	
+	BEGIN TRY
+		SET @CustomError = 2001
+
+
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
 
+		/*
 		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
 			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
 		END;
+		*/
 
 		-- Aquí T2 solicita un update lock sobre saldosDistribución, pero como T1 ya tiene uno,
 		-- T2 debe esperar a que T1 termine. Por lo tanto, T2 siempre va a ver el valor actualizado
@@ -153,7 +155,7 @@ SELECT * FROM sys.dm_tran_locks
   WHERE resource_database_id = DB_ID()
   AND resource_associated_entity_id = OBJECT_ID(N'dbo.saldosDistribucion');
 		-- Cuando ya T1 termina, T2 continúa.
-		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
+		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 		
 		-- Calcula el descuento total usado en los ítemes, porque este se había dividido
 		-- en cada viaje para el local.
@@ -167,7 +169,7 @@ SELECT * FROM sys.dm_tran_locks
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
 		-- T2 escribe el montoSaldo. montoSaldo queda con el valor correcto.
-		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
+		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)

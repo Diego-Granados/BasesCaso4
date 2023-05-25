@@ -121,10 +121,11 @@ BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
 
+		/*
 		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
 			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
 		END;
-		
+		*/
 
 		SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
@@ -149,12 +150,16 @@ BEGIN
 		SELECT productor, total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, total - descuento, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
 		FROM #viajesSelect INNER JOIN descuentos ON #viajesSelect.viaje = descuentos.viajeId;
 		
+		SELECT locks.resource_type, locks.resource_subtype, locks.request_mode, locks.request_status, locks.request_request_id, sys.objects.name FROM sys.dm_tran_locks AS locks
+LEFT JOIN sys.objects ON locks.resource_associated_entity_id = sys.objects.object_id
+WHERE locks.resource_database_id = DB_ID();
+
 		waitfor delay '00:00:15';
 		-- Por razones del planificador, la transacción T1 espera y T2 se ejecuta.
 		-- Sin embargo, T2 necesita modificar saldosDistribucion, el cual tiene un lock,
 		-- por lo que T2 espera.
 
-		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
+		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 		-- Calcula el descuento total usado en los ítemes, porque este se había dividido
 		-- en cada viaje para el local.
@@ -175,7 +180,7 @@ BEGIN
 		y escribe el resultado. El montoSaldo queda en -600.
 		*/
 
-		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
+		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)
