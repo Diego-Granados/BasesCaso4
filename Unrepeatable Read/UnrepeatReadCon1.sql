@@ -1,7 +1,8 @@
 -----------------------------------------------------------
--- Autor: Diego Granados
--- Fecha: 05/04/2023
+-- Autor: Daniel Granados
+-- Fecha: 22/05/2023
 -- Descripcion: En este script se ejecuta el stored procedure SP_registrarFacturaRecoleccion
+-- para demostrar el problema del unrepeatable read. Conexión 1.
 -----------------------------------------------------------
 
 -- Prueba de error de unrepeatable read

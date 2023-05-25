@@ -3,6 +3,10 @@
 -- Fecha: 4/23/2023
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
+-- Autor: Daniel Granados
+-- Fecha: 5/23/2023
+-- Descripción: Este Stored Procedure se adaptó para mostrar el problema del unrepeatable read arreglado.
+-----------------------------------------------------------
 
 DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionURFix1];
 GO
@@ -66,8 +70,9 @@ BEGIN
 	
 	BEGIN TRY
 		SET @CustomError = 2001
+	SELECT @@SPID AS T1;
 
-			-- T1: empieza primero
+	-- T1: empieza primero
 	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 712 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
 	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect	
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
@@ -94,9 +99,9 @@ BEGIN
 	INNER JOIN paises ON estados.paisId = paises.paisId
 	INNER JOIN 
 	(SELECT SUM(desechosPlantasLogs.cantidad) AS cantidadDesechoRecogido, SUM(desechosPlantasLogs.costoTrato) AS costosTratos, costosTratamiento.monedaId AS monedaCosto, 
-	viajesRecoleccion.viajeId as sumaViajeId FROM desechosPlantasLogs 
-	INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = desechosPlantasLogs.viajeId INNER JOIN costosTratamiento ON 
-	desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId,  viajesRecoleccion.viajeId) AS sumasDesechosViajes 
+	v.viajeId as sumaViajeId FROM desechosPlantasLogs 
+	INNER JOIN @viajes v ON v.viajeId = desechosPlantasLogs.viajeId INNER JOIN costosTratamiento ON 
+	desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId,  v.viajeId) AS sumasDesechosViajes 
 	ON sumasDesechosViajes.sumaViajeId = viajesRecoleccion.viajeId
 	INNER JOIN 
 	(SELECT SUM(desechosPorPaso.maxEsperado) AS cantidadEsperada, desechosPorPaso.recPasoId as sumaPasoId FROM desechosPorPaso 
@@ -121,6 +126,7 @@ BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
 
+		
 		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
 			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
 		END;

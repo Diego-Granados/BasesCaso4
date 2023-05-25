@@ -3,6 +3,10 @@
 -- Fecha: 4/23/2023
 -- Descripción: Este Stored procedure inserta una factura con base en los viajes que se mandan por TVP.
 -----------------------------------------------------------
+-- Autor: Daniel Granados
+-- Fecha: 5/23/2023
+-- Descripción: Este Stored Procedure se adaptó para mostrar el problema del deadlock.
+-----------------------------------------------------------
 
 DROP PROCEDURE IF EXISTS  [dbo].[SP_registrarFacturaRecoleccionD2];
 GO
