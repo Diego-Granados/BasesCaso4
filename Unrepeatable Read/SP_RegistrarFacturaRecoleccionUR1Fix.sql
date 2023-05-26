@@ -70,7 +70,6 @@ BEGIN
 	
 	BEGIN TRY
 		SET @CustomError = 2001
-	SELECT @@SPID AS T1;
 
 	-- T1: empieza primero
 	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 1400 para ese local. Se calcula el total del costo del viaje y otros aspectos, 

@@ -65,7 +65,7 @@ BEGIN
 		/*
 		T2 lee el saldo que actualizó T1. Calcula los descuentos de los viajes
 		con base en este saldo. Como son dos viajes del mismo local, a cada uno 
-		le corresponde 22. 
+		le corresponde 83. 
 		*/
 		INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
 		(SELECT locales.productorId, ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion), camiones.recolectorId, (sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 
@@ -120,10 +120,10 @@ BEGIN
 		/*
 		Cuando llega aquí, T2 no puede escribir porque T1 tiene el lock sobre
 		saldosDistribución, por lo que espera. Después de que T1 haga rollback,
-		T2 hace el update. Sin embargo, originalmente había leído que solo podía usar $44.
-		No obstante, ahora en el saldo a 600, por lo que de esos 600 solo gasta 44.
-		El saldo queda en 555. Aquí ocurre el Dirty read, ya que en realidad T2 debió de
-		haber tenido $600 disponibles.
+		T2 hace el update. Sin embargo, originalmente había leído que solo podía usar $116.
+		No obstante, ahora en el saldo hay 1450 porque T1 hizo rollback, por lo que de esos 1450 solo gasta 116.
+		El saldo queda en 1334. Aquí ocurre el Dirty read, ya que en realidad T2 debió de
+		haber tenido $1450 disponibles al inicio.
 		*/
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal,

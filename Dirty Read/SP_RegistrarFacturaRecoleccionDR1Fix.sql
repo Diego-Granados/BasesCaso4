@@ -126,7 +126,7 @@ BEGIN
 		más antes posible. Se arriesga a que haga rollback después, pero lo hace
 		por velocidad.
 		*/
-		-- T1 actualiza el saldo. 600-556 = 44
+		-- T1 actualiza el saldo. 1450-1334 = 116
 		/*
 		T1 pone un lock exclusivo de escritura sobre saldosDistribución.
 		Esto significa que T2 no puede escribir. Ahora como el nivel de isolación
@@ -153,7 +153,7 @@ BEGIN
 		
 		-- Cuando T1 continúa, llega a las validaciones. Un viaje no existe,
 		-- Por lo que debe hacer rollback. T1 hace rollback y el valor de los
-		-- el saldo se retorna al valor inicial de 600. T1 termina y T2 puede
+		-- el saldo se retorna al valor inicial de 1450. T1 termina y T2 puede
 		-- continuar.
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)

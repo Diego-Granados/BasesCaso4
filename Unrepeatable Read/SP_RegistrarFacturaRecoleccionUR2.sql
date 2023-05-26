@@ -50,7 +50,7 @@ BEGIN
 	)
 
 	-- T2: Empieza después de T1
-	-- se lee el valor de saldo 600 para el local 1. El costo de T2 es 1200, entonces agarra todo el saldo para usarlo
+	-- se lee el valor de saldo 600 para el local 1. El costo de T2 es 1900, entonces agarra todo el saldo para usarlo
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
 	(SELECT locales.productorId, 
 	((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion),

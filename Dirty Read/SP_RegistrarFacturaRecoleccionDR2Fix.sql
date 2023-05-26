@@ -122,8 +122,8 @@ BEGIN
 
 		/*
 		Cuando llega aquí, T2 ya puede escribir porque T1 ya liberó su lock exclusivo.
-		El valor del saldo es el correcto: $600. T2 lo utiliza todo y a cada viaje le
-		corresponden $300. El resto de la transacción continúa normalmente.
+		El valor del saldo es el correcto: $1450. T2 lo utiliza todo y a cada viaje le
+		corresponden $725. El resto de la transacción continúa normalmente.
 		*/
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal,

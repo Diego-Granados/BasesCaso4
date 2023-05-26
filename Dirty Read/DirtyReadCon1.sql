@@ -21,7 +21,7 @@ select * from viajesRecoleccion;
 -- Prueba con stored procedure arreglado
 DECLARE @viajes AS viajesTabla;
 
-INSERT INTO @viajes VALUES (100), (5);
+INSERT INTO @viajes VALUES (5);
 
 EXEC SP_registrarFacturaRecoleccionDR1Fix @viajes;
 GO
@@ -33,5 +33,5 @@ select * from saldosDistribucion;
 select * from viajesRecoleccion;
 
 UPDATE saldosDistribucion
-SET montoSaldo = 600
+SET montoSaldo = 1450
 WHERE localId = 1

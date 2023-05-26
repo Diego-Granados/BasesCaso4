@@ -33,5 +33,5 @@ select * from saldosDistribucion;
 select * from viajesRecoleccion;
 
 UPDATE saldosDistribucion
-SET montoSaldo = 600
+SET montoSaldo = 1450
 WHERE localId = 1
