@@ -1,10 +1,10 @@
 -----------------------------------------------------------
--- Autor: Daniel Granados
--- Fecha: 21/04/2023
--- Descripcion: En este script se realizan pruebas del problema Dirty Read
+-- Autor: Diego Granados
+-- Fecha: 25/05/2023
+-- Descripcion: En este script se realizan pruebas del problema Lost Update
 -----------------------------------------------------------
 
--- Prueba de error de Dirty read
+-- Prueba de error de Lost Update
 DECLARE @viajes AS viajesTabla;
 
 INSERT INTO @viajes VALUES (13);

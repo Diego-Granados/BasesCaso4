@@ -116,10 +116,11 @@ BEGIN
 		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])
 		SELECT productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, montoAPagar, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
 		FROM #viajesSelect;
+
 		
 		waitfor delay '00:00:15';
 		-- Por razones del planificador, T1 espera y continúa T2.
-
+		
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(#viajesSelect.descuento) descuentoTotal, viajesRecoleccion.localId localId FROM #viajesSelect
 			INNER JOIN viajesRecoleccion ON viajesRecoleccion.viajeId = #viajesSelect.viaje
@@ -129,6 +130,7 @@ BEGIN
 		UPDATE saldosDistribucion
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
+		
 		/* 
 		En este caso, cuando se actualiza el saldo, se utiliza el saldo actual que tiene, no el que se utilizó 
 		para obtener el descuento.
