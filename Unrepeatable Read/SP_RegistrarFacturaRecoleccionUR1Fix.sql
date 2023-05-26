@@ -73,7 +73,7 @@ BEGIN
 	SELECT @@SPID AS T1;
 
 	-- T1: empieza primero
-	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 712 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
+	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 1400 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
 	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect	
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
 	(SELECT locales.productorId,
@@ -148,6 +148,8 @@ BEGIN
 				THEN (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion
 				ELSE (#viajesSelect.total)
 			END ) FROM #viajesSelect INNER JOIN saldosDistribucion WITH (UPDLOCK) ON #viajesSelect.localId = saldosDistribucion.localId
+			-- Se adquiere un Update Lock sobre saldosDistribucion porque se va a actualizar después.
+			-- Así se manifiesta la intención de actualización y previene que otras tablas la actualicen.
 		)
 		INSERT INTO [dbo].[itemsRecoleccion] ([productorId], [montoTotal], [recolectorId], [montoRec], [montoTrato], 
 		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])
@@ -164,6 +166,7 @@ BEGIN
 		-- Calcula el descuento total usado en los ítemes, porque este se había dividido
 		-- en cada viaje para el local.
 		-- Actualiza el saldo utilizado
+		-- El updateLock se convierte en un lock de escritura.
 		WITH sumSaldo (descuentoTotal, localId) AS (
 			SELECT SUM(itemsRecoleccion.descuentoSaldo) descuentoTotal, #viajesSelect.localId localId FROM #viajesSelect
 			INNER JOIN itemsRecoleccion ON itemsRecoleccion.viajeId = #viajesSelect.viaje

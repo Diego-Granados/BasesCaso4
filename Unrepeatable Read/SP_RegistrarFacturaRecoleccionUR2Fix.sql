@@ -61,7 +61,7 @@ BEGIN
 	*/
 
 	-- T1: empieza primero
-	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 625 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
+	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 1400 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
 	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect	
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
 	(SELECT locales.productorId,

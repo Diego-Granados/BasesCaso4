@@ -51,18 +51,16 @@ BEGIN
 	)
 
 	/*
-		Puede ocurrir el problema del Unrepeatable Read en la tabla de saldosDistribucion. Al hacer el procesamiento grueso de la transacción antes del begin transaction,
-		acortamos el tiempo y el procesamiento dentro de la transacción. Sin embargo, el cálculo del descuento por el saldo se hace con base en el monto que 
-		haya en el momento donde se hace todo el procesamiento. Si dos transacciones realizan este procesamiento al mismo tiempo, o una inmediatamente después de la otra, 
-		van a leer el mismo saldo disponible para ambas. Si este es el caso, cada una puede pensar que puede usar la totalidad del saldo para pagar su recolección.
-		Luego al momento de actualizar el saldo, se resta el monto que leen dos veces, por lo que queda una cantidad negativa en el saldo.
-		Esto es el problema del unrepeatable read porque la segunda transacción primero lee el valor original, pero cuando hace el update, lee el valor actual del saldo,
-		el cual es diferente al valor original que leyó al inicio.
+		Una forma para eliminar el problema del unrepeatable read en la tabla de saldosDistribucion, es dejar la lectura de los saldos para después,
+		no leer el saldo al puro inicio cuando se hace todo el procesamiento. Sin embargo, podríamos calcular otros factores que van a facilitar
+		el cálculo del saldo después, como el local, la cantidad de locales y la conversión de la moneda del saldo.
+		La lectura del valor del saldo en sí se deja para después.
 	*/
 
 	-- T1: empieza primero
 	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 712 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
-	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect	
+	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect
+	-- Se consiguen en locks de lectura compartidos en todas estas tablas.
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
 	(SELECT locales.productorId,
 	((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion),
@@ -143,12 +141,14 @@ BEGIN
 		-- calcula si extrae todo el monto del saldo o solo una parte comparando
 		-- el costo del viaje con lo que hay disponible
 		WITH descuentos(viajeId, descuento) AS (
-			SELECT #viajesSelect.viaje, (CASE  
+			-- adquiere un lock de lectura compartido en saldosDistribucion
+			SELECT #viajesSelect.viaje, (CASE
 				WHEN (#viajesSelect.total > (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion)
 				THEN (saldosDistribucion.montoSaldo / #viajesSelect.localesCount) / #viajesSelect.conversion
 				ELSE (#viajesSelect.total)
 			END ) FROM #viajesSelect INNER JOIN saldosDistribucion ON #viajesSelect.localId = saldosDistribucion.localId
 		)
+		-- Aquí adquiere un lock de escritura sobre itemsRecoleccion. 
 		INSERT INTO [dbo].[itemsRecoleccion] ([productorId], [montoTotal], [recolectorId], [montoRec], [montoTrato], 
 		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])
 		SELECT productor, total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, '2023-04-24 00:00:00', descuento, total - descuento, 1, '2023-04-24 10:00:00', 'ComputerName', 'Username', 0x0123456789ABCDEF
@@ -160,8 +160,6 @@ WHERE locks.resource_database_id = DB_ID();
 
 		waitfor delay '00:00:15';
 		-- Por razones del planificador, la transacción T1 espera y T2 se ejecuta.
-		-- Sin embargo, T2 necesita modificar saldosDistribucion, el cual tiene un lock,
-		-- por lo que T2 espera.
 
 		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 
@@ -169,23 +167,19 @@ WHERE locks.resource_database_id = DB_ID();
 		-- en cada viaje para el local.
 		-- Actualiza el saldo utilizado
 		WITH sumSaldo (descuentoTotal, localId) AS (
+			-- Aquí debe leer itemsRecoleccion, entonces solicita un lock compartido,
+			-- pero T2 tiene un lock exclusivo, por lo que T1 espera a que se le pueda
+			-- conceder el lock. Aquí, es donde se produce el deadlock.
 			SELECT SUM(itemsRecoleccion.descuentoSaldo) descuentoTotal, #viajesSelect.localId localId FROM #viajesSelect
 			INNER JOIN itemsRecoleccion ON itemsRecoleccion.viajeId = #viajesSelect.viaje
 			GROUP BY #viajesSelect.localId
-		)
+		) -- Aquí también necesita convertir el lock de lectura a uno de escritura.
 		UPDATE saldosDistribucion
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
-		/*
-		-- T1 vuelve a leer montoSaldo, pero esta vez montoSaldo no pudo haber sido
-		modificado desde el primer read gracias al nivel de isolación de repeatable
-		read, el cual adquiere locks de lectura en los objetos que va a leer o
-		escribir, como saldosDistribución. Resta el valor inicial que leyó al inicio
-		y escribe el resultado. El montoSaldo queda en -600.
-		*/
+
 
 		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
-
 
 		INSERT INTO [dbo].[facturas] (enabled, [createdAt], computer, username, checksum, facturaStatusId, [descripcion], [fecha], fechaMax)
 VALUES (1, '2023-04-25 12:00:00', 'PC01', 'JohnDoe', 0x0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF, 1, 'Factura de recoleccion ', '2023-04-25 12:00:00', NULL);
@@ -197,7 +191,6 @@ VALUES (1, '2023-04-25 12:00:00', 'PC01', 'JohnDoe', 0x0123456789ABCDEF012345678
 		FROM itemsRecoleccion
 		INNER JOIN @viajes v ON v.viajeId = itemsRecoleccion.viajeId
 		
-		-- T1 termina su ejecución
 		IF @InicieTransaccion=1 BEGIN
 			COMMIT
 		END

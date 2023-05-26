@@ -22,7 +22,7 @@ select * from viajesRecoleccion;
 -- Prueba con stored procedure arreglado
 DECLARE @viajes AS viajesTabla;
 
-INSERT INTO @viajes VALUES (3), (4);
+INSERT INTO @viajes VALUES (1), (2);
 
 EXEC SP_registrarFacturaRecoleccionURFix2 @viajes;
 Go

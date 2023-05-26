@@ -25,8 +25,7 @@ WHERE localId = 1
 SELECT SUM(desechosPlantasLogs.cantidad) AS cantidadDesechoRecogido, SUM(desechosPlantasLogs.costoTrato) AS costosTratos, costosTratamiento.monedaId AS monedaCosto, 
 	v.viajeId as sumaViajeId FROM desechosPlantasLogs 
 	INNER JOIN viajesRecoleccion v ON v.viajeId = desechosPlantasLogs.viajeId INNER JOIN costosTratamiento ON 
-	desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId WHERE v.viajeId IN (1,2) GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId,  v.viajeId
-	;
+	desechosPlantasLogs.costoTratoId = costosTratamiento.costoTratoId GROUP BY desechosPlantasLogs.viajeId, costosTratamiento.monedaId, v.viajeId;
 
 SELECT viajeid, desechosPorPaso.maxEsperado AS cantidadEsperada, desechosPorPaso.recPasoId as sumaPasoId FROM desechosPorPaso 
 	INNER JOIN viajesRecoleccion ON viajesRecoleccion.recPasoId = desechosPorPaso.recPasoId ORDER BY viajeId

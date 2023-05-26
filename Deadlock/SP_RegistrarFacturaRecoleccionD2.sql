@@ -50,15 +50,6 @@ BEGIN
 		conversion MONEY
 	)
 
-	/*
-		Puede ocurrir el problema del Unrepeatable Read en la tabla de saldosDistribucion. Al hacer el procesamiento grueso de la transacción antes del begin transaction,
-		acortamos el tiempo y el procesamiento dentro de la transacción. Sin embargo, el cálculo del descuento por el saldo se hace con base en el monto que 
-		haya en el momento donde se hace todo el procesamiento. Si dos transacciones realizan este procesamiento al mismo tiempo, o una inmediatamente después de la otra, 
-		van a leer el mismo saldo disponible para ambas. Si este es el caso, cada una puede pensar que puede usar la totalidad del saldo para pagar su recolección.
-		Luego al momento de actualizar el saldo, se resta el monto que leen dos veces, por lo que queda una cantidad negativa en el saldo.
-		Esto es el problema del unrepeatable read porque la segunda transacción primero lee el valor original, pero cuando hace el update, lee el valor actual del saldo,
-		el cual es diferente al valor original que leyó al inicio.
-	*/
 
 SELECT locks.resource_type, locks.resource_subtype, locks.request_mode, locks.request_status, locks.request_request_id, sys.objects.name FROM sys.dm_tran_locks AS locks
 LEFT JOIN sys.objects ON locks.resource_associated_entity_id = sys.objects.object_id
@@ -67,7 +58,8 @@ WHERE locks.resource_database_id = DB_ID();
 	SELECT GETDATE();
 	-- T1: empieza primero
 	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 625 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
-	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect	
+	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect
+	-- Los locks de lectura que adquiere aquí no interfieren con los locks que tiene T1.
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
 	(SELECT locales.productorId,
 	((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion),
@@ -141,6 +133,9 @@ WHERE locks.resource_database_id = DB_ID();
 		-- Aquí T2 solicita un update lock sobre saldosDistribución, pero como T1 ya tiene uno,
 		-- T2 debe esperar a que T1 termine. Por lo tanto, T2 siempre va a ver el valor actualizado
 		-- por T1. Así se previene el problema del unrepeatable read.
+		-- Aquí adquiere un lock compartido sobre saldosDistribución
+		-- El lock de escritura sobre itemsRecoleccion no interfiere con el que tiene T1 porque
+		-- se insertan nuevos registros.
 		SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 		WITH descuentos(viajeId, descuento) AS (
 			SELECT #viajesSelect.viaje, (CASE
@@ -165,10 +160,13 @@ SELECT * FROM sys.dm_tran_locks
 		-- en cada viaje para el local.
 		-- Actualiza el saldo utilizado
 		WITH sumSaldo (descuentoTotal, localId) AS (
+			-- Aquí debe leer itemsRecoleccion, entonces solicita un lock compartido,
+			-- pero T1 tiene un lock exclusivo, por lo que T2 espera a que se le pueda
+			-- conceder el lock. Por lo tanto, T1 continúa.
 			SELECT SUM(itemsRecoleccion.descuentoSaldo) descuentoTotal, #viajesSelect.localId localId FROM #viajesSelect
 			INNER JOIN itemsRecoleccion ON itemsRecoleccion.viajeId = #viajesSelect.viaje
 			GROUP BY #viajesSelect.localId
-		)
+		) -- Aquí también necesita convertir el lock de lectura a uno de escritura.
 		UPDATE saldosDistribucion
 		SET montoSaldo = montoSaldo - sumSaldo.descuentoTotal
 		FROM sumSaldo INNER JOIN saldosDistribucion ON saldosDistribucion.localId = sumSaldo.localId
