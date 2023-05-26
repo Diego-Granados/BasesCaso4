@@ -18,6 +18,10 @@ select * from itemsRecoleccion;
 select * from saldosDistribucion;
 select * from viajesRecoleccion;
 
+UPDATE saldosDistribucion
+SET montoSaldo = 300
+WHERE localId = 1
+
 -- Prueba con stored procedure arreglado
 DECLARE @viajes AS viajesTabla;
 
@@ -32,6 +36,3 @@ select * from itemsRecoleccion;
 select * from saldosDistribucion;
 select * from viajesRecoleccion;
 
-UPDATE saldosDistribucion
-SET montoSaldo = 600
-WHERE localId = 1

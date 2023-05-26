@@ -133,8 +133,8 @@ BEGIN
 		actualizar el saldo a la misma vez. Si T1 y T2 son del mismo local y leen el saldo al mismo
 		tiempo, eso causa que el saldo guardado en la tabla temporaria sea el mismo, sin tomar en cuenta los descuentos de
 		las transacciones. Por lo tanto, si T1 actualiza el saldo y poco tiempo después T2 lo actualiza, sería como si T1 nunca
-		ocurrió y quedaría inconsistente. Por ejemplo, digamos que el saldo es de $1500. T1 tiene un descuento de $400 y T2 de $600.
-		Si T1 actualiza el saldo primero, el saldo quedaría en $1100. No obstante, luego T2 lo actualiza a $900, por lo que el dinero
+		ocurrió y quedaría inconsistente. Por ejemplo, digamos que el saldo es de $3000. T1 tiene un descuento de $1403 y T2 de $1280.
+		Si T1 actualiza el saldo primero, el saldo quedaría en $1597. No obstante, luego T2 lo actualiza a $1720, por lo que el dinero
 		restado por T1 no quedó guardado.
 		*/
 		UPDATE saldosDistribucion

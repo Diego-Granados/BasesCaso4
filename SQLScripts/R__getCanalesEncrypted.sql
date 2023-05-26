@@ -20,7 +20,7 @@ EXEC [SP_getCanalesEncrypted]
 GO
 
 /* Métodos para revisar si el stored procedure está encriptado */ 
-SELECT O.name, M.definition, O.type_desc, O.type 
+SELECT O.name, M.definition, O.type_desc, O.type,O.object_id
 FROM sys.sql_modules M 
 INNER JOIN sys.objects O ON M.object_id=O.object_id 
 WHERE O.type IN ('P');
@@ -47,4 +47,11 @@ GO
 
 EXEC [SP_getCanalesEncrypted]
 GO
+
+DECLARE @object_name NVARCHAR(128) = 'SP_getCanalesEncrypted';
+DECLARE @encrypted_code NVARCHAR(MAX);
+
+SELECT @encrypted_code = OBJECT_DEFINITION(OBJECT_ID(@object_name));
+
+SELECT @encrypted_code AS EncryptedCode;
 
