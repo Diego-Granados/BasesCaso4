@@ -4,6 +4,10 @@
 -- Descripcion: En este script se realizan pruebas del problema Lost Update
 -----------------------------------------------------------
 
+UPDATE saldosDistribucion
+SET montoSaldo = 3000
+WHERE localId = 1
+
 -- Prueba de error de Lost Update
 DECLARE @viajes AS viajesTabla;
 

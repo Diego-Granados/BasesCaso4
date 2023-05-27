@@ -1,12 +1,15 @@
 -----------------------------------------------------------
 -- Autor: Diego Granados
 -- Fecha: 05/04/2023
--- Descripcion: En este script se ejecuta el stored procedure SP_registrarFacturaRecoleccion
+-- Descripcion: En este script se realizan pruebas del problema deadlock
 -----------------------------------------------------------
 
 UPDATE saldosDistribucion
 SET montoSaldo = 600
 WHERE localId = 1
+UPDATE saldosDistribucion
+SET montoSaldo = 10000
+WHERE localId = 2
 
 -- Prueba de error de unrepeatable read
 DECLARE @viajes AS viajesTabla;

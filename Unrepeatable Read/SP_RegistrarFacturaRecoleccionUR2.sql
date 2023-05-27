@@ -121,10 +121,6 @@ BEGIN
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END 
-		
-		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
-			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
-		END;
 
 		INSERT INTO [dbo].[itemsRecoleccion] ([productorId], [montoTotal], [recolectorId], [montoRec], [montoTrato], 
 		[montoComisionEV],[viajeId],[fechaFactura], [descuentoSaldo], [montoAPagar], [enabled], [createdAt], [computer],[username],[checksum])

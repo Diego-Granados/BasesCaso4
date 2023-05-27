@@ -8,6 +8,9 @@
 UPDATE saldosDistribucion
 SET montoSaldo = 600
 WHERE localId = 1
+UPDATE saldosDistribucion
+SET montoSaldo = 10000
+WHERE localId = 2
 
 -- Prueba de error de unrepeatable read
 DECLARE @viajes AS viajesTabla;

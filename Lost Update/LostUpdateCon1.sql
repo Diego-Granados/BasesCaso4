@@ -4,6 +4,10 @@
 -- Descripcion: En este script se realizan pruebas del problema Lost Update
 -----------------------------------------------------------
 
+UPDATE saldosDistribucion
+SET montoSaldo = 3000
+WHERE localId = 1
+
 -- Prueba de error de Lost Update
 DECLARE @viajes AS viajesTabla;
 
@@ -18,7 +22,7 @@ select itemRecId, montoTotal, montoRec, montoTrato, montoComisionEV, viajeId, de
 select saldoId, localId, montoSaldo from saldosDistribucion;
 select * from viajesRecoleccion;
 
-delete itemsRecoleccion where viajeid = 13
+delete itemsRecoleccion where viajeid = 14
 -- Prueba con stored procedure arreglado
 
 UPDATE saldosDistribucion
