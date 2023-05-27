@@ -59,19 +59,7 @@ BEGIN
 		Esto es el problema del unrepeatable read porque la segunda transacción primero lee el valor original, pero cuando hace el update, lee el valor actual del saldo,
 		el cual es diferente al valor original que leyó al inicio.
 	*/
-
-	--T1 empieza su transacción primero.
-	SET @InicieTransaccion = 0
-	IF @@TRANCOUNT=0 BEGIN
-		SET @InicieTransaccion = 1
-		SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- El isolation level se pone en Repeatable read, el cual previene el problema del unrepeatable read.
-		BEGIN TRANSACTION		
-	END
-	
-	BEGIN TRY
-		SET @CustomError = 2001
-
-	-- T1: empieza primero
+		-- T1: empieza primero
 	-- Ya no se lee el valor de saldo 600 para el local 1. El costo de T1 es 1400 para ese local. Se calcula el total del costo del viaje y otros aspectos, 
 	-- como la cantidad de viajes para ese local en esta factura. Todo se guarda en #viajesSelect	
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, localId, localesCount, conversion) 
@@ -121,15 +109,21 @@ BEGIN
 		END
 	END))
 
+	--T1 empieza su transacción primero.
+	SET @InicieTransaccion = 0
+	IF @@TRANCOUNT=0 BEGIN
+		SET @InicieTransaccion = 1
+		SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- El isolation level se pone en Repeatable read, el cual previene el problema del unrepeatable read.
+		BEGIN TRANSACTION		
+	END
+	
+	BEGIN TRY
+		SET @CustomError = 2001
+
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
 
-		
-		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
-			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
-		END;
-		
 		SELECT 'Primer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
 
 		/*

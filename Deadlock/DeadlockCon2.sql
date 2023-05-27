@@ -4,10 +4,14 @@
 -- Descripcion: En este script se realizan pruebas del problema deadlock
 -----------------------------------------------------------
 
+UPDATE saldosDistribucion
+SET montoSaldo = 600
+WHERE localId = 1
+
 -- Prueba de error de unrepeatable read
 DECLARE @viajes AS viajesTabla;
 
-INSERT INTO @viajes VALUES (7), (8);
+INSERT INTO @viajes VALUES (11), (12);
 
 EXEC SP_registrarFacturaRecoleccionD2 @viajes;
 Go

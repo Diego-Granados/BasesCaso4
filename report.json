@@ -18572,6 +18572,2946 @@
       "operation": "migrate",
       "exception": null,
       "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 941
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 99
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 62
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 41
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 209
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 53
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 67
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 17
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 17
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 20
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 54
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 258
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 21
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 19
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev41",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T16:27:26.905578400",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 884
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 87
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 64
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 37
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 193
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 52
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 55
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 21
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 19
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 55
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 258
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 19
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 20
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev34",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T16:27:37.067790900",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 859
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 97
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 72
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 49
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 205
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 53
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 99
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 37
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 33
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 124
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 269
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 17
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 30
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 22
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev34",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T16:36:01.050855400",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 896
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 118
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 68
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 51
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 243
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 79
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 80
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 29
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 28
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 74
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 262
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 16
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 28
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 24
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev41",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T16:40:55.506212500",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 897
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 107
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 74
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 52
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 189
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 17
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 56
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 61
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 25
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 19
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 65
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 297
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 26
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 20
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev41",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T16:44:18.822599800",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 891
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 99
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 72
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 46
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 198
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 58
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 62
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 25
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 20
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 59
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 254
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 16
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 27
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 18
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev34",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T17:06:46.383729",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 829
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 103
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 71
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 46
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 204
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 55
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 64
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 25
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 25
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 62
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 256
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 36
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 18
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 33
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev34",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T17:08:31.294131900",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 1040
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 371
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 62
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 191
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 112
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 240
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 71
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 94
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 35
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 70
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 103
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 9
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 579
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 16
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 31
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 8
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 8
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 8
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 14
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev34",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T17:13:03.599071200",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 876
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 98
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 76
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 57
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 572
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 61
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 63
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 25
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 20
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 63
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 265
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 16
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 25
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 19
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev34",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T17:22:25.817085600",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 944
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 102
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 72
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 47
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 212
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 56
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 66
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 23
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 22
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 72
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 259
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 26
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 24
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev41",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T17:52:51.966840200",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 1116
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 102
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 68
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 47
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 200
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 56
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 66
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 24
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 18
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 73
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 289
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 21
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 23
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev41",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T17:54:45.786768400",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 930
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 99
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 16
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 76
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 48
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 218
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 62
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 63
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 26
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 20
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 64
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 263
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 19
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 22
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 16
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev41",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T18:01:38.764712900",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 991
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 102
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 68
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 44
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 212
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 60
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 65
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 23
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 27
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 66
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 256
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 18
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 27
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 12
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 16
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41Flyway\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 25
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev41",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T18:19:16.251503600",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "019.20230524081010",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "001.20230418200716",
+          "description": "Ignition",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V001_20230418200716__Ignition.sql",
+          "executionTime": 999
+        },
+        {
+          "category": "Versioned",
+          "version": "002.20230419041525",
+          "description": "convertTemporalTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V002_20230419041525__convertTemporalTables.sql",
+          "executionTime": 102
+        },
+        {
+          "category": "Versioned",
+          "version": "003.20230421031352",
+          "description": "nameLengthChange",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V003_20230421031352__nameLengthChange.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "004.20230421040206",
+          "description": "idiomasYPaises",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V004_20230421040206__idiomasYPaises.sql",
+          "executionTime": 61
+        },
+        {
+          "category": "Versioned",
+          "version": "005.20230421214619",
+          "description": "updateSaldosTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V005_20230421214619__updateSaldosTables.sql",
+          "executionTime": 46
+        },
+        {
+          "category": "Versioned",
+          "version": "006.20230422232758",
+          "description": "InsertsInTables",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V006_20230422232758__InsertsInTables.sql",
+          "executionTime": 241
+        },
+        {
+          "category": "Versioned",
+          "version": "007.20230423024455",
+          "description": "AlterContratosNull",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V007_20230423024455__AlterContratosNull.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "008.20230423024811",
+          "description": "InsertCamiones",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V008_20230423024811__InsertCamiones.sql",
+          "executionTime": 60
+        },
+        {
+          "category": "Versioned",
+          "version": "009.20230423034439",
+          "description": "InsertCostoTratos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V009_20230423034439__InsertCostoTratos.sql",
+          "executionTime": 61
+        },
+        {
+          "category": "Versioned",
+          "version": "010.20230424031154",
+          "description": "AlterPorcentajesActores",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V010_20230424031154__AlterPorcentajesActores.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Versioned",
+          "version": "011.20230424194601",
+          "description": "AlterFacturasFecha",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V011_20230424194601__AlterFacturasFecha.sql",
+          "executionTime": 15
+        },
+        {
+          "category": "Versioned",
+          "version": "012.20230424194601",
+          "description": "Insertar tipos cambio",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V012_20230424194601__Insertar_tipos_cambio.sql",
+          "executionTime": 29
+        },
+        {
+          "category": "Versioned",
+          "version": "013.20230425015550",
+          "description": "InsertProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V013_20230425015550__InsertProductos.sql",
+          "executionTime": 27
+        },
+        {
+          "category": "Versioned",
+          "version": "014.20230428194601",
+          "description": "Insertar Para SP",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V014_20230428194601__Insertar_Para_SP.sql",
+          "executionTime": 83
+        },
+        {
+          "category": "Versioned",
+          "version": "015.20230515210333",
+          "description": "AddFKItemsProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V015_20230515210333__AddFKItemsProductos.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "016.20230520232758",
+          "description": "InsertsInEventLogs",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V016_20230520232758__InsertsInEventLogs.sql",
+          "executionTime": 271
+        },
+        {
+          "category": "Versioned",
+          "version": "017.20230522031210",
+          "description": "InsertDirtyRead",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V017_20230522031210__InsertDirtyRead.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "018.20230522081010",
+          "description": "InsertDeadlock",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V018_20230522081010__InsertDeadlock.sql",
+          "executionTime": 13
+        },
+        {
+          "category": "Versioned",
+          "version": "019.20230524081010",
+          "description": "InsertLostUpdate",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\V019_20230524081010__InsertLostUpdate.sql",
+          "executionTime": 14
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP RegistrarFacturaRecoleccion",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_RegistrarFacturaRecoleccion.sql",
+          "executionTime": 24
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getCanales",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getCanales.sql",
+          "executionTime": 8
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getLotes",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getLotes.sql",
+          "executionTime": 10
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP getProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_getProductos.sql",
+          "executionTime": 11
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "SP registrarFacturaProductos",
+          "type": "SQL",
+          "filepath": "C:\\Users\\dandi\\Bases\\BasesCaso4\\.\\ev41FlywayProb\\migrations\\R__SP_registrarFacturaProductos.sql",
+          "executionTime": 20
+        }
+      ],
+      "migrationsExecuted": 24,
+      "success": true,
+      "flywayVersion": "9.18.0",
+      "database": "ev34",
+      "warnings": [
+        "outOfOrder mode is active. Migration of schema [dbo] may not be reproducible."
+      ],
+      "timestamp": "2023-05-26T18:36:15.919108",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
     }
   ]
 }

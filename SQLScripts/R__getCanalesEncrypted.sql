@@ -7,6 +7,7 @@ DROP PROCEDURE IF EXISTS  [dbo].[SP_getCanalesEncrypted];
 GO
 
 CREATE PROCEDURE [dbo].[SP_getCanalesEncrypted]
+-- WITH ENCRYPTION
 AS 
 BEGIN
 	SET NOCOUNT ON -- no retorne metadatos

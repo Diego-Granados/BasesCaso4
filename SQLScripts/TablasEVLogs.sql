@@ -8,7 +8,6 @@ CREATE TABLE [dbo].[eventLogs](
 	[referenceId2] [bigint] NOT NULL,
 	[value1] [nchar](60) NOT NULL,
 	[values2] [nchar](60) NOT NULL,
-	[ubicacion] [geography] NOT NULL,
 	[levelId] [tinyint] NOT NULL,
 	[eventTypeId] [int] NOT NULL,
 	[objectTypeId] [tinyint] NOT NULL,
@@ -19,7 +18,7 @@ CREATE TABLE [dbo].[eventLogs](
 (
 	[eventLogId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) 
 GO
 
 CREATE TABLE [dbo].[sources](

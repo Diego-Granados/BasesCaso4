@@ -5,6 +5,11 @@
 -- para demostrar el problema del unrepeatable read. Conexión 2.
 -----------------------------------------------------------
 
+
+UPDATE saldosDistribucion
+SET montoSaldo = 600
+WHERE localId = 1
+
 -- Prueba de error de unrepeatable read
 DECLARE @viajes AS viajesTabla;
 

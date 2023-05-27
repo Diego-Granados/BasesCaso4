@@ -19,7 +19,7 @@ select * from saldosDistribucion;
 select * from viajesRecoleccion;
 
 UPDATE saldosDistribucion
-SET montoSaldo = 300
+SET montoSaldo = 3000
 WHERE localId = 1
 
 -- Prueba con stored procedure arreglado

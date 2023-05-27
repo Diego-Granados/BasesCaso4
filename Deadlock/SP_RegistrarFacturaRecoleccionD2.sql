@@ -51,7 +51,7 @@ BEGIN
 	)
 
 
-SELECT locks.resource_type, locks.resource_subtype, locks.request_mode, locks.request_status, locks.request_request_id, sys.objects.name FROM sys.dm_tran_locks AS locks
+		SELECT locks.resource_type, locks.resource_subtype, locks.request_mode, locks.request_status, locks.request_session_id, sys.objects.name FROM sys.dm_tran_locks AS locks
 LEFT JOIN sys.objects ON locks.resource_associated_entity_id = sys.objects.object_id
 WHERE locks.resource_database_id = DB_ID();
 
@@ -124,15 +124,6 @@ WHERE locks.resource_database_id = DB_ID();
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
 
-		/*
-		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
-			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
-		END;
-		*/
-
-		-- Aquí T2 solicita un update lock sobre saldosDistribución, pero como T1 ya tiene uno,
-		-- T2 debe esperar a que T1 termine. Por lo tanto, T2 siempre va a ver el valor actualizado
-		-- por T1. Así se previene el problema del unrepeatable read.
 		-- Aquí adquiere un lock compartido sobre saldosDistribución
 		-- El lock de escritura sobre itemsRecoleccion no interfiere con el que tiene T1 porque
 		-- se insertan nuevos registros.
@@ -150,9 +141,9 @@ WHERE locks.resource_database_id = DB_ID();
 		FROM #viajesSelect INNER JOIN descuentos ON #viajesSelect.viaje = descuentos.viajeId;
 		
 		SELECT @@SPID AS T2;
-SELECT * FROM sys.dm_tran_locks
-  WHERE resource_database_id = DB_ID()
-  AND resource_associated_entity_id = OBJECT_ID(N'dbo.saldosDistribucion');
+		SELECT locks.resource_type, locks.resource_subtype, locks.request_mode, locks.request_status, locks.request_session_id, sys.objects.name FROM sys.dm_tran_locks AS locks
+LEFT JOIN sys.objects ON locks.resource_associated_entity_id = sys.objects.object_id
+WHERE locks.resource_database_id = DB_ID();
 		-- Cuando ya T1 termina, T2 continúa.
 		SELECT 'Segundo read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion;
 		

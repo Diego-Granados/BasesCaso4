@@ -124,11 +124,7 @@ BEGIN
 		IF (SELECT COUNT(*) FROM @viajes v) != (SELECT COUNT(viaje) FROM #viajesSelect) BEGIN
 			RAISERROR ('VIAJES NO EXISTEN', 16, 1)
 		END;
-		
-		IF (SELECT COUNT(*) FROM itemsRecoleccion INNER JOIN @viajes v ON itemsRecoleccion.viajeId = v.viajeId) != 0 BEGIN
-			RAISERROR('YA HAY VIAJES PAGADOS EN LOS VIAJES INGRESADOS', 16, 1)
-		END;
-		
+
 		-- Aquí T2 solicita un update lock sobre saldosDistribución, pero como T1 ya tiene uno,
 		-- T2 debe esperar a que T1 termine. Por lo tanto, T2 siempre va a ver el valor actualizado
 		-- por T1. Así se previene el problema del unrepeatable read.

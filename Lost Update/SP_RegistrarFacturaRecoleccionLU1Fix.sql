@@ -45,7 +45,8 @@ BEGIN
 	)
 
 	/*  
-	En esta versión mejorada no se almacena el saldo que se utilizó, ya que se actualiza el saldo actual
+	En esta versión mejorada no se almacena el saldo que se utilizó, ya que se actualiza el saldo actual. 
+	Esto previene el lost update porque se agarra el saldo más reciente
 	*/
 	INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 
 	(SELECT locales.productorId, ((sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion + sumasDesechosViajes.costosTratos / tCT.conversion + costosPasoRecoleccion.comisionEV / tCC.conversion), camiones.recolectorId, (sumasDesechosViajes.cantidadDesechoRecogido * costosPasoRecoleccion.costoRec / cantidadEsperada) / tCC.conversion,sumasDesechosViajes.costosTratos / tCT.conversion, 

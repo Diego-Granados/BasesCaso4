@@ -4,10 +4,14 @@
 -- Descripcion: En este script se ejecuta el stored procedure SP_registrarFacturaRecoleccion
 -----------------------------------------------------------
 
+UPDATE saldosDistribucion
+SET montoSaldo = 600
+WHERE localId = 1
+
 -- Prueba de error de unrepeatable read
 DECLARE @viajes AS viajesTabla;
 
-INSERT INTO @viajes VALUES (5), (6);
+INSERT INTO @viajes VALUES (9), (10);
 
 EXEC SP_registrarFacturaRecoleccionD1 @viajes;
 GO
@@ -18,9 +22,7 @@ select * from itemsRecoleccion;
 select * from saldosDistribucion;
 select * from viajesRecoleccion;
 
-UPDATE saldosDistribucion
-SET montoSaldo = 600
-WHERE localId = 1
+
 
 SELECT SUM(desechosPlantasLogs.cantidad) AS cantidadDesechoRecogido, SUM(desechosPlantasLogs.costoTrato) AS costosTratos, costosTratamiento.monedaId AS monedaCosto, 
 	v.viajeId as sumaViajeId FROM desechosPlantasLogs 

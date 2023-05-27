@@ -64,7 +64,7 @@ BEGIN
 
 		/*
 		T2 lee el saldo que actualizó T1. Calcula los descuentos de los viajes
-		con base en este saldo. Como son dos viajes del mismo local, a cada uno 
+		con base en este saldo, que es 116. Como son dos viajes del mismo local, a cada uno 
 		le corresponde 83. 
 		*/
 		INSERT INTO #viajesSelect (productor,total, recolector, montoRecoleccion, montoTratamiento, comision, viaje, descuento, montoAPagar) 

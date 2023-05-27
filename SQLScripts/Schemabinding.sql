@@ -18,3 +18,6 @@ GO
 
 ALTER TABLE viajesRecoleccion
 DROP COLUMN fechaInicio
+
+ALTER TABLE viajesRecoleccion
+ALTER COLUMN fechaInicio INT

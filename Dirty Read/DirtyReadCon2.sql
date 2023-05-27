@@ -3,6 +3,9 @@
 -- Fecha: 21/05/2023
 -- Descripcion: En este script se realizan pruebas del problema Dirty Read
 -----------------------------------------------------------
+UPDATE saldosDistribucion
+SET montoSaldo = 1450
+WHERE localId = 1
 
 -- Prueba de error de Dirty read
 DECLARE @viajes AS viajesTabla;
@@ -31,7 +34,3 @@ select * from itemsFactura;
 select * from itemsRecoleccion;
 select * from saldosDistribucion;
 select * from viajesRecoleccion;
-
-UPDATE saldosDistribucion
-SET montoSaldo = 1450
-WHERE localId = 1

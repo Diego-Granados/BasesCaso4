@@ -44,8 +44,8 @@ BEGIN
 		saldo MONEY
 		/* 
 		En esta versión de este stored procedure, el programador decidió almacenar el saldo que había disponible
-		en el momento del select. Lo hizo así para disminiur la cantidad de lecturas sobre la tabla y para que el saldo actualizado quede como
-		debería quedar luego restarle el descuento al saldo original.
+		en el momento del select. Lo hizo así para disminiur la cantidad de lecturas sobre la tabla y para que 
+		el saldo actualizado quede como	debería quedar luego de restarle el descuento al saldo original.
 		*/
 	)
 

@@ -18,6 +18,7 @@ select itemRecId, montoTotal, montoRec, montoTrato, montoComisionEV, viajeId, de
 select saldoId, localId, montoSaldo from saldosDistribucion;
 select * from viajesRecoleccion;
 
+delete itemsRecoleccion where viajeid = 13
 -- Prueba con stored procedure arreglado
 
 UPDATE saldosDistribucion
