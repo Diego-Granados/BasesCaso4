@@ -20,3 +20,4 @@ DELETE FROM eventLogs
 WHERE eventLogId>0
 
 select * from eventLogs
+select * from [PREDATOR\MSSQLSERVER01].[evlogs].dbo.[eventLogs]

@@ -173,7 +173,7 @@ BEGIN
 		modificado desde el primer read gracias al nivel de isolación de repeatable
 		read, el cual adquiere locks de lectura en los objetos que va a leer o
 		escribir, como saldosDistribución. Resta el valor inicial que leyó al inicio
-		y escribe el resultado. El montoSaldo queda en -600.
+		y escribe el resultado. El montoSaldo queda en 0
 		*/
 
 		SELECT 'Tercer read', saldoId, montoSaldo, GETDATE() FROM saldosDistribucion WITH (UPDLOCK);
