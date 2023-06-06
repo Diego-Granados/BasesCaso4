@@ -17,6 +17,9 @@ VALUES (57, 1)
 INSERT INTO [dbo].[regiones] ([nombreId], [enabled])
 VALUES (58, 1)
 
+INSERT INTO traduccionesPorIdioma (idiomaId, nombreId, traduccion, enabled) VALUES (2, 57, 'Norteamérica', 1);
+INSERT INTO traduccionesPorIdioma (idiomaId, nombreId, traduccion, enabled) VALUES (2, 58, 'Europa occidental', 1);
+
 INSERT INTO [dbo].[direcciones] ([nombre], [ciudadId], [geolocation], [detalle1], [detalle2], [zipcode], [enabled], [createdAt], [updatedAt], [computer], [username], [checksum])
 VALUES ('Address 1', 1, geography::Point(25.7617, -80.1918, 4326), 'Detail 1', 'Detail 2', '12345', 1, GETDATE(), NULL, 'Computer 1', 'User 1', CONVERT(varbinary(150), 'Address 1'));
 
@@ -276,10 +279,10 @@ INSERT INTO [dbo].[modelosRecipientes] ([marcaId], [nombre], [enabled])
 VALUES (1, 'Roughneck', 1);
 
 INSERT INTO [dbo].[nombres] ([nombreBase], [idiomaId], [enabled])
-VALUES ('Quimico', 2, 1);
+VALUES ('Químico', 2, 1);
 
 INSERT INTO [dbo].[nombres] ([nombreBase], [idiomaId], [enabled])
-VALUES ('Biologico', 2, 1);
+VALUES ('Biológico', 2, 1);
 
 INSERT INTO [dbo].[nombres] ([nombreBase], [idiomaId], [enabled])
 VALUES ('Aguas', 2, 1);
