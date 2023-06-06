@@ -238,9 +238,13 @@ SET @contador = @contador + 1
 END
 
 SET @contador = 0
+DECLARE @contadorDesechos tinyint
+DECLARE @viaje int
+declare @planta int
 
 WHILE @contador < 1000
 BEGIN
+	set @planta = (SELECT TOP 1 plantaId FROM plantas ORDER BY NEWID())
 INSERT INTO [dbo].[viajesRecoleccion]
            ([recPasoId]
            ,[localId]
@@ -259,7 +263,7 @@ INSERT INTO [dbo].[viajesRecoleccion]
            ,(SELECT TOP 1 localId FROM locales ORDER BY NEWID())
            ,(SELECT TOP 1 camionId FROM camiones ORDER BY NEWID())
            ,(SELECT TOP 1 plantaId FROM plantas ORDER BY NEWID())
-           ,(SELECT TOP 1 plantaId FROM plantas ORDER BY NEWID())
+           ,@planta
            ,DATEADD(minute, FLOOR(1 + RAND()*518400), '2022-01-01 00:00:00')
            ,(SELECT TOP 1 contactoId FROM contactos ORDER BY NEWID())
            ,1
@@ -267,9 +271,44 @@ INSERT INTO [dbo].[viajesRecoleccion]
 		   ,@computer
 		   ,@username
 		   ,@checksum)
+
+	SET @contadorDesechos = FLOOR(1 + RAND()*5)
+	SET @viaje = SCOPE_IDENTITY()
+
+	WHILE @contadorDesechos <= 5
+	BEGIN
+
+	INSERT INTO [dbo].[desechosPlantasLogs]
+           ([plantaId]
+           ,[desechoId]
+           ,[cantidad]
+           ,[fecha]
+           ,[viajeId]
+           ,[costoTrato]
+           ,[enabled]
+           ,[costoTratoId]
+           ,[createdAt]
+           ,[computer]
+           ,[username]
+           ,[checksum])
+     VALUES
+           (@planta
+           ,@contadorDesechos
+           ,FLOOR(1 + RAND()*100)*10
+           ,DATEADD(minute, FLOOR(1 + RAND()*518400), '2022-01-01 00:00:00')
+           ,@viaje
+           ,FLOOR(1 + RAND()*100)*100
+           ,1
+           ,(SELECT TOP 1 costoTratoId FROM costosTratamiento ORDER BY NEWID())
+           ,getDate()
+		   ,@computer
+		   ,@username
+		   ,@checksum)
+		SET @contadorDesechos = @contadorDesechos + 1
+	END
 SET @contador = @contador + 1
 END
-
+/*
 SET @contador = 0
 
 WHILE @contador < 1000
@@ -302,7 +341,7 @@ INSERT INTO [dbo].[desechosPlantasLogs]
 		   ,@checksum)
 SET @contador = @contador + 1
 END
-
+*/
 -----------------------------------------------------------
 -- Autor: Daniel Granados
 -- Fecha: 04/23/2023
