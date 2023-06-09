@@ -1,4 +1,4 @@
--- User B
+-- User B: tiene datareader y datawriter y viajesReader.
 -- No tiene acceso a canalId ni a checksum
 SELECT canalId, nombre, tipoEntidadId, enabled, createdAt, updatedAt, computer, username, checksum FROM canales;
 
